@@ -4,7 +4,11 @@
   "description": "application for mtg on mkm",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "transform": {}
   },
   "repository": {
     "type": "git",
@@ -19,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/christopherhanke/mtg_mkm/issues"
   },
-  "homepage": "https://github.com/christopherhanke/mtg_mkm#readme"
+  "homepage": "https://github.com/christopherhanke/mtg_mkm#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
