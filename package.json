@@ -1,0 +1,23 @@
+{
+  "name": "mtg_mkm",
+  "version": "1.0.0",
+  "description": "application for mtg on mkm",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherhanke/mtg_mkm.git"
+  },
+  "keywords": [
+    "mtg",
+    "mkm"
+  ],
+  "author": "Christopher Richarz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christopherhanke/mtg_mkm/issues"
+  },
+  "homepage": "https://github.com/christopherhanke/mtg_mkm#readme"
+}
