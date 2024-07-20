@@ -1,5 +1,4 @@
 import fs from 'node:fs/promises'
-import { stringify } from 'node:querystring'
 
 async function is_file(file) {
     try {
@@ -9,8 +8,7 @@ async function is_file(file) {
     } catch (err) {
         console.log(err.message)
         return
-    }
-    
+    }  
 }
 
 async function get_file_data(file) {
@@ -62,10 +60,65 @@ async function get_list_prices(file) {
     return list_prices
 }
 
+async function collect_cardinfo(idProduct, file_products, file_prices) {
+    const cardinfo = {}
+    const list_products = await get_list_products(file_products)
+    const list_prices = await get_list_prices(file_prices)
+    
+    // check for name in product data
+    // when card is found add name and id to cardinfo
+    for (let i = 0; i < list_products.length; i++) {
+        if (list_products[i].idProduct === idProduct) {
+            cardinfo.idProduct = idProduct
+            cardinfo.name = list_products[i].name
+            break
+        }
+    }
+    // return undefined if cardname is not found
+    if (!(cardinfo.hasOwnProperty("idProduct"))) {
+        console.log("idProduct not found")
+        return
+    }
+    // search for product id in price list
+    // when found add trend price to cardinfo
+    for (let i = 0; i < list_prices.length; i++) {
+        if (list_prices[i].idProduct === cardinfo.idProduct) {
+            cardinfo.trend = list_prices[i].trend
+            break
+        }
+    }
+    // return undefined when price is not found
+    if (!(cardinfo.hasOwnProperty("trend"))) {
+        console.log(`Why has the card "${cardinfo.name} no trend price?`)
+        return
+    }
+    return cardinfo
+}
+
+async function search_cardname(name, file_products) {
+    const list_cardname = []
+    const list_products = await get_list_products(file_products)
+    
+    // check list of products for name
+    // add productid to list of cardname
+    for (let i = 0; i < list_products.length; i++) {
+        if (list_products[i].name === name) {
+            list_cardname.push(list_products[i].idProduct)
+        }
+    }
+    // check for no entries then return undefined
+    if (list_cardname.length < 1) {
+        return
+    }
+    return list_cardname
+}
+
 
 export {
     is_file,
     get_file_data,
     get_list_products,
-    get_list_prices
+    get_list_prices,
+    collect_cardinfo,
+    search_cardname
 }

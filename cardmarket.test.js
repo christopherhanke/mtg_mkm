@@ -1,9 +1,23 @@
 import { test, expect } from "@jest/globals";
-import { is_file, get_file_data, get_list_products, get_list_prices } from "./cardmarket";
+import { 
+    is_file, 
+    get_file_data, 
+    get_list_products, 
+    get_list_prices,
+    collect_cardinfo,
+    search_cardname
+} from "./cardmarket";
 
+// declare constant test data
 const FILE_PRODUCTS = "./src/products_singles_1.json"
 const FILE_PRICES = "./src/price_guide_1.json"
+const CARDINFO = {
+    "idProduct": 693202,
+    "name": "Sheoldred's Edict",
+    "trend": 2.84
+}
 
+// test suite
 test('test for product file is file.', () => {
     return is_file(FILE_PRODUCTS).then(data => {
         expect(data).toBe(true)
@@ -43,5 +57,21 @@ test('try to get price list from product file.', () => {
 test('try to get price list from price file.', () => {
     return get_list_prices(FILE_PRICES).then(data => {
         expect(Array.isArray(data)).toBeTruthy()
+    })
+})
+
+test(`collect card info for idProduct: ${CARDINFO.idProduct} -> "${CARDINFO.name}"`, () => {
+    return collect_cardinfo(CARDINFO.idProduct, FILE_PRODUCTS, FILE_PRICES).then(data => {
+        expect(data).toHaveProperty("name")
+        expect(data).toHaveProperty("idProduct")
+        expect(data).toHaveProperty("trend")
+        console.log(data)
+    })
+})
+
+test(`search for cardname "${CARDINFO.name}" in list of product.`, () => {
+    return search_cardname(CARDINFO.name, FILE_PRODUCTS).then(data => {
+        expect(data).toBeTruthy()
+        console.log(data)
     })
 })
