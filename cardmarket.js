@@ -1,14 +1,11 @@
 import fs from 'node:fs/promises'
+import { stringify } from 'node:querystring'
 
-const MY_FILE = "./src/products_singles_1.json"
-
-async function is_file() {
+async function is_file(file) {
     try {
-        //chekc for file
-        const file = await fs.stat(MY_FILE)
-        return file.isFile()
-    
-    //error handling
+        //check for file
+        const data = await fs.stat(file)
+        return data.isFile()
     } catch (err) {
         console.log(err.message)
         return
@@ -16,28 +13,42 @@ async function is_file() {
     
 }
 
-async function get_file_data() {
+async function get_file_data(file) {
     try {
-        //read file to JSON
-        const data = JSON.parse(await fs.readFile(MY_FILE))
-        
-        //check for property products and return data from file
+        //read file to JSON object
+        const data = JSON.parse(await fs.readFile(file))
+        return data
+    } catch (err) {
+        console.log(err.message)
+        return
+    }
+}
+
+async function get_list_products(file) {
+    let list_products = []
+    try {
+        // get data from file and check for products
+        const data = await get_file_data(file)
         if (data.hasOwnProperty("products")) {
-            return data
-        }
-        
-        //error handling
-        else {
-            throw new Error(`File "${MY_FILE}" has no property "products"`)
+            list_products = data.products
+        } else {
+            throw new Error(`File "${file}" has no property "products"`)
         }
     } catch (err) {
         console.log(err.message)
         return
     }
+    console.log(`list of products contains ${list_products.length} entries`)
+    if (list_products.length > 0) {
+        console.log(list_products[0])
+        
+    }
+    return list_products
 }
 
 
 export {
     is_file,
-    get_file_data
+    get_file_data,
+    get_list_products
 }
