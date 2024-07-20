@@ -13,3 +13,7 @@ In this project I want to accomplish the following.
 > MKM = MagicKartenMarkt = Cardmarket
 
 > MtG = Magic the Gathering
+
+# Disclaimer
+Magic the Gathering is property of Wizards of the Coast. As far as I use this property in this project it is an unofficial Fan Content permitted under the Wizards of the Coast Fan Content Policy. Not approved/endorsed by Wizards. ©Wizards of the Coast LLC
+Cardmarket und Magickartmarket sind Marken der Sammelkartenmarkt GmbH & Co. KG. As far as I use this property in this project it is unofficial and not related/approved/endorsed by Sammelkartenmarkt.
