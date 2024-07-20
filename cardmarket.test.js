@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { is_file, get_file_data, get_list_products } from "./cardmarket";
+import { is_file, get_file_data, get_list_products, get_list_prices } from "./cardmarket";
 
 const FILE_PRODUCTS = "./src/products_singles_1.json"
 const FILE_PRICES = "./src/price_guide_1.json"
@@ -31,5 +31,17 @@ test('get list of products from product file.', () => {
 test('try to get list of products from price file.', () => {
     return get_list_products(FILE_PRICES).then(data => {
         expect(data).toBeUndefined()
+    })
+})
+
+test('try to get price list from product file.', () => {
+    return get_list_prices(FILE_PRODUCTS).then(data => {
+        expect(data).toBeUndefined()
+    })
+})
+
+test('try to get price list from price file.', () => {
+    return get_list_prices(FILE_PRICES).then(data => {
+        expect(Array.isArray(data)).toBeTruthy()
     })
 })
