@@ -24,7 +24,7 @@ test('get data from product file.', () => {
 
 test('get list of products from product file.', () => {
     return get_list_products(FILE_PRODUCTS).then(data => {
-        expect(typeof data).toBe("object")
+        expect(Array.isArray(data)).toBeTruthy()
     })
 })
 

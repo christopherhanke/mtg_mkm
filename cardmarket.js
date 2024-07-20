@@ -30,18 +30,13 @@ async function get_list_products(file) {
         // get data from file and check for products
         const data = await get_file_data(file)
         if (data.hasOwnProperty("products")) {
-            list_products = data.products
+            list_products = Array.from(data.products)
         } else {
             throw new Error(`File "${file}" has no property "products"`)
         }
     } catch (err) {
         console.log(err.message)
         return
-    }
-    console.log(`list of products contains ${list_products.length} entries`)
-    if (list_products.length > 0) {
-        console.log(list_products[0])
-        
     }
     return list_products
 }
