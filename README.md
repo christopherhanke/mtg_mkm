@@ -11,7 +11,7 @@ In this project I want to accomplish the following.
 Working with data from MKM that's already stored and interact with own database.
 
 ## TODO
-- [x] read file from MKM
+- [x] read file local
     - [x] get product list
     - [x] get price for product
 - [ ] creating own database / datastructure
