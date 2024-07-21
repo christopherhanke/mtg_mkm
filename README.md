@@ -14,6 +14,11 @@ Working with data from MKM that's already stored and interact with own database.
 - [x] read file local
     - [x] get product list
     - [x] get price for product
+- [ ] read data from cardmarket in http-stream
+    - [x] get product list
+    - [x] get price list
+    - [ ] verify date to update data
+    - [ ] add data to own database
 - [ ] creating own database / datastructure
     - [ ] write file
     - [ ] which data to store?

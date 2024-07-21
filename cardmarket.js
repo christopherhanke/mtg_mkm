@@ -146,6 +146,9 @@ async function fetch_products_cardmarket() {
     }
 }
 
+// TODO design database
+// TODO write in own database
+// TODO read own database
 
 export {
     is_file,
