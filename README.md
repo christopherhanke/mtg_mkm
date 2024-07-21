@@ -1,12 +1,25 @@
 # mtg_mkm
-This is a private repo for a learning project.
+This repo is a personal learning project. Introducing myself to Javascript and working with data from external sources as well as my own database.
 
 # Learning Project
 In this project I want to accomplish the following.
-- fetch data from MKM
 - read data from MKM
 - work data from MKM in an own database
 - work with own card data
+
+## minimum viable project (MVP)
+Working with data from MKM that's already stored and interact with own database.
+
+## TODO
+- [x] read file from MKM
+    - [x] get product list
+    - [x] get price for product
+- [ ] creating own database / datastructure
+    - [ ] write file
+    - [ ] which data to store?
+- [ ] is there an interaction with the programm?
+- [ ] open questions
+    - [ ] setID to set? // card variants
 
 
 # Glossar
