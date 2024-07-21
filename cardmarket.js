@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises'
+import { PRICES_URL, PRODUCTS_URL } from './src/src'
 
 async function is_file(file) {
     try {
@@ -113,6 +114,38 @@ async function search_cardname(name, file_products) {
     return list_cardname
 }
 
+async function fetch_prices_cardmarket() {
+    // fetch cardmarket prices data
+    try {
+        const prices_response = await fetch(PRICES_URL)
+        if (!prices_response.ok) {
+            throw new Error(`Response status: ${prices_response.status}`)
+        }
+        const prices_json = await prices_response.json()
+        return prices_json
+    } catch (err) {
+        // error handling and return undefined
+        console.log(err.message)
+        return
+    }
+}
+
+async function fetch_products_cardmarket() {
+    // fetch cardmarket products data
+    try {
+        const products_response = await fetch(PRODUCTS_URL)
+        if (!products_response.ok) {
+            throw new Error(`Response status: ${products_response.status}`)
+        }
+        const products_json = await products_response.json()
+        return products_json
+    } catch (err) {
+        // error handling and return undefined
+        console.log(err.message)
+        return
+    }
+}
+
 
 export {
     is_file,
@@ -120,5 +153,7 @@ export {
     get_list_products,
     get_list_prices,
     collect_cardinfo,
-    search_cardname
+    search_cardname,
+    fetch_prices_cardmarket,
+    fetch_products_cardmarket
 }
