@@ -5,28 +5,33 @@ class Carddata {
         this.id = id // id for precise identifaction in product list
         this.name = name // cardname, not precise because of reprints
         this.count = count // count in collection
-        this.prices = [] // list of prices {date:price}
+        this.prices = [] // list of prices {date:, price:}
     }
 
+    // declaring how to stringify class objects
     toJSON() {
-        return 
+        return {
+            '@type': 'Carddata',
+            id: this.id,
+            name: this.name,
+            count: this.count,
+            prices: this.prices
+        }
     }
 }
 
+// declaring a reviver function for the Carddata class
 function carddata_reviver(key, value) {
-    if (true) {
-        return
+    if (value?.['@type'] === 'Carddata') {
+        const card = new Carddata(value.id, value.name, value.count)
+        card.prices = value.prices
+        return card
     }
+    return value
 }
 
-function main() {
-    const test = new Carddata(1, "Test", 2)
-    console.log(test)
-    console.log(JSON.stringify(test))
-}
-
-main()
 
 export {
-    Carddata
+    Carddata,
+    carddata_reviver
 }
